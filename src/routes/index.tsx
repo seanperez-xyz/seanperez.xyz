@@ -4,22 +4,23 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 export default component$(() => {
   return (
     <>
-      <h1>Hi 👋</h1>
-      <div>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </div>
+      <h1 class="text-4xl font-bold text-primary md:text-6xl lg:text-8xl">
+        Sean Perez
+      </h1>
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: "SeanPerez.xyz",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content: "Sean Perez's web portfolio and projects",
+    },
+    {
+      property: "og:image",
+      content: "https://seanperez.xyz/og-image",
     },
   ],
 };

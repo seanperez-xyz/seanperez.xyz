@@ -1,0 +1,72 @@
+.ripple {
+  --ripple-hover-color: var(--color-on-surface);
+  --ripple-hover-opacity: var(--state-hover-state-layer-opacity);
+  --ripple-pressed-color: var(--color-on-surface);
+  --ripple-pressed-opacity: var(--state-pressed-state-layer-opacity);
+
+  display: flex;
+  margin: auto;
+  pointer-events: none;
+}
+
+.ripple[aria-disabled] {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .ripple {
+    display: none;
+  }
+}
+
+.ripple,
+.surface {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.surface {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.surface::before,
+.surface::after {
+  content: "";
+  opacity: 0;
+  position: absolute;
+}
+
+.surface::before {
+  background-color: var(--ripple-hover-color);
+  inset: 0;
+  transition:
+    opacity 15ms linear,
+    background-color 15ms linear;
+}
+
+.surface::after {
+  background: radial-gradient(
+    closest-side,
+    var(--ripple-pressed-color) max(calc(100% - 70px), 65%),
+    transparent 100%
+  );
+  transform-origin: center center;
+  transition: opacity 375ms linear;
+}
+
+.hovered::before {
+  background-color: var(--ripple-hover-color);
+  opacity: var(--ripple-hover-opacity);
+}
+
+.pressed::after {
+  opacity: var(--ripple-pressed-opacity);
+  transition-duration: 105ms;
+}
+
+.ripple.unbounded,
+.ripple.unbounded .surface {
+  border-radius: 50%;
+}
